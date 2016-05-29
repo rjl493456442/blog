@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block extend_style %}
+{% load duoshuo_tags %}
+<link rel="stylesheet" href="/static/assets/css/colorful.css">
+
+<!-- 多说公共JS代码 end -->
+{% endblock %}
+
+{% block title %}Gary Rong博客 | {{post.title}}{% endblock %}
+
+{% block posts %}
+<div class="sections">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8 main-content">
+				<div class="post post-2 post-gallery single-post">
+					<div class="clearfix"></div>
+					<div class="post-head"><h3>{{post.title}}</h3>
+						{%include "post_related.html"%}
+						<div class="clearfix"></div>
+					</div> 
+					<div class="post-wrap">
+						<div class="post-inner">
+							{{post.content_html | safe }}
+							<div class="clearfix"></div>
+							<div class="post-share-view">
+								<div class="post-meta">
+									<div><i class="fa fa-eye"></i><span>浏览{{post.view_times}}次 </span></div>
+									{% include "share.html"%}
+								</div> 
+							</div> 
+							<div class="clearfix"></div>
+						</div> 
+					</div> 
+				</div> 
+				<div class="page-navigation clearfix">
+					{% if post.prev_post %}
+			        <div class="nav-next"><a href="{{ post.prev_post.get_absolute_url }}"><i class="fa fa-angle-double-left"></i><span>上一篇: {{ post.prev_post.title }}</span></a></div>
+			        {% else %}
+			       	<div class="nav-next"><a href="#"><i class="fa fa-angle-double-left"></i><span>没有了</span></a></div>
+			        {% endif %}
+
+			        {% if post.next_post %}
+			        <div class="nav-previous"><a href="{{ post.next_post.get_absolute_url }}"><span>下一篇: {{ post.next_post.title }}</span><i class="fa fa-angle-double-right"></i></a></div>
+			        {% else %}
+			       	<div class="nav-previous"><a href="#"><span>没有了</span><i class="fa fa-angle-double-right"></i></a></div>
+			        {% endif %}
+				</div> 
+				<div class="height_20"></div>
+				
+				<div class="post related-posts-div">
+					<div class="post-wrap">
+						<div class="post-inner">
+							<div class="post-title"><i class="fa fa-share"></i>相关文章</div>
+							<div class="row">
+								<div class="related-posts">
+									<ul>
+										{% for p in post.related_posts %}
+										<li>
+											<div class="col-md-12 related-post-item">
+												<div class="related-post-one">
+													<div class="related-post-img">
+														<a href="{{p.get_absolute_url}}"><img alt="" src="/static/assets/images/post-small-1.png"></a>
+														<div class="related-post-type"><i class="fa fa-image "></i></div>
+													</div>
+													<div class="related-post-head">
+														<a href="{{p.get_absolute_url}}">{{p.title}}</a>
+														<span><i class="fa fa-clock-o"></i>{{p.pub_time |date:"Y-m-d P"}}</span>
+														<span><i class="fa fa-eye"></i><a href="#">{{p.view_times}}</a>次阅读</span>
+													</div>
+												</div>
+											</div>
+										</li>
+										{% endfor %}
+									</ul>
+								</div> 
+							</div> 
+							<div class="clearfix"></div>
+						</div> 
+					</div> 
+				</div> 
+				<div class="clearfix"></div>
+
+				{% duoshuo_comments %}
+
+			</div> 
+		</div> 
+	</div>
+</div>
+{% endblock %}

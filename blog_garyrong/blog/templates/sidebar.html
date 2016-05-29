@@ -1,0 +1,129 @@
+<div class="widget widget-about">
+	<div class="widget-about-img"><img alt="" src="/static/assets/images/author.png"></div>
+	<h3>Gary Rong</h3>
+	<p>Description</p>
+	<div class="social-ul">
+		<ul>
+			{%include "follow.html" %}
+		</ul>
+	</div><!-- End social-ul -->
+	<div class="clearfix"></div>
+</div><!-- End widget -->
+				
+<div class="widget">
+	<div class="widget-title"><i class="fa fa-search"></i>搜索</div>
+	<div class="widget-search">
+		<form method = "get">
+			<input type="search" name = "s" value="Search here ..." onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;">
+			<input class="button" type="submit" value="Search Now">
+		</form>
+	</div><!-- End widget-search -->
+</div><!-- End widget -->
+	
+<div class="widget">
+	<div class="widget-title"><i class="fa fa-folder-open"></i>分类</div>
+	<div class="widget-categories">
+		<ul>
+			{%for category in categories%}
+			<li><a href="{{category.get_absolute_url}}">{{category.name}}<span>({{category.related_post_number}})</span></a><i class="fa fa-angle-double-right"></i></li>
+			{%endfor%}
+		</ul>
+	</div><!-- End widget-categories -->
+</div><!-- End widget -->
+	
+	
+<div class="widget tabs-warp widget-tabs">
+	<div class="widget-title">
+		<ul class="tabs">
+			<li class="tab"><a href="#" class="current">热门</a></li>
+			<li class="tab"><a href="#" class="">好评</a></li>
+			<li class="tab"><a href="#">最新</a></li>
+			<li class="tab"><a href="#" class="">评论</a></li>
+			<li class="tab"><a href="#">标签</a></li>
+		</ul>
+	</div>
+	<div class="tab-inner-warp">
+		<div class="widget-posts">
+			<ul>
+				{%for post in hot_posts%}
+				<li class="widget-posts-image">
+					<div class="widget-posts-content">
+						<a href="{{post.get_absolute_url}}">{{post.title}}</a>
+						<span><i class="fa fa-user"></i>作者 : <a href="">{{post.author}}</a></span>
+						<span><i class="fa fa-clock-o"></i>{{post.pub_time |date:"Y-m-d P"}}</span>
+						<span><i class="fa fa-eye"></i>浏览数 : {{post.view_times}}</span>
+					</div>
+				</li>
+				{%endfor%}
+			</ul>
+		</div><!-- End widget-posts -->
+	</div>
+	<div class="tab-inner-warp">
+		<div class="widget-posts">
+			<ul>
+				{%for post in like_most_posts%}
+				<li class="widget-posts-image">
+					<div class="widget-posts-content">
+							<a href="{{post.get_absolute_url}}">{{post.title}}</a>
+							<span><i class="fa fa-user"></i>作者 : <a href="">{{post.author}}</a></span>
+							<span><i class="fa fa-clock-o"></i>{{post.pub_time |date:"Y-m-d P"}}</span>
+							<span><i class="fa fa-heart"></i>好评数 : {{post.like_times}}</span>
+					</div>
+				</li>
+				{%endfor%}
+			</ul>
+		</div><!-- End widget-posts -->
+	</div>
+
+	<div class="tab-inner-warp">
+		<div class="widget-posts">
+			<ul>
+				{%for post in recently_posts%}
+				<li class="widget-posts-image">
+					<div class="widget-posts-content">
+							<a href="{{post.get_absolute_url}}">{{post.title}}</a>
+							<span><i class="fa fa-user"></i>作者 : <a href="">{{post.author}}</a></span>
+							<span><i class="fa fa-clock-o"></i>{{post.pub_time |date:"Y-m-d P"}}</span>
+					</div>
+				</li>
+				{%endfor%}
+			</ul>
+		</div><!-- End widget-posts -->
+	</div>
+
+	<div class="tab-inner-warp">
+		<div class="widget-comments">
+			<ul>
+				<li>
+					<div class="widget-comments-img"><a href="#"><img alt="" src="/static/assets/images/comment-img-1.png"></a></div>
+					<div class="widget-comments-content">
+						<a href="#">2code</a>
+						<p><a href="#">consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</a></p>
+					</div>
+				</li>
+				<li>
+					<div class="widget-comments-img"><a href="#"><img alt="" src="/static/assets/images/comment-img-2.png"></a></div>
+					<div class="widget-comments-content">
+						<a href="#">Begha</a>
+						<p><a href="#">consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</a></p>
+					</div>
+				</li>
+				<li>
+					<div class="widget-comments-img"><a href="#"><img alt="" src="/static/assets/images/comment-img-3.png"></a></div>
+					<div class="widget-comments-content">
+						<a href="#">Johnny</a>
+						<p><a href="#">consectetur adipisicing elit, sed do eiusmod tempor incididunt ut.</a></p>
+					</div>
+				</li>
+			</ul>
+		</div><!-- End widget-comments -->
+	</div>
+	<div class="tab-inner-warp">
+		<div class="widget_tag_cloud">
+			{%for tag in tag_lists%}
+			<a href="/tag/{{tag}}/">{{tag}}</a>
+			{%endfor%}
+		</div>
+		<div class="clearfix"></div>
+	</div>
+</div><!-- End widget -->

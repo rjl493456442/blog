@@ -1,0 +1,53 @@
+{% load sub %}
+<div class="pagination">
+    <ul>
+        {% if posts.number <= 1 %}
+            <li class="disabled"><a>上一页</a></li>
+        {% else %}
+            {% if query %}
+            <li><a href="?s={{ query }}&page={{ posts.number|add:-1 }}">上一页</a></li>
+            {% else %}
+            <li><a href="?page={{ posts.number|add:-1 }}">上一页</a></li>
+            {% endif %}
+            {% for i in 'abcde'|make_list %}
+                {% if posts.number|sub:forloop.revcounter > 0 %}
+                
+                {% if query %}
+                <li><a href="?s={{ query }}&page={{ posts.number|sub:forloop.revcounter }}">{{ posts.number|sub:forloop.revcounter }}</a></li>
+                
+                {% else %}
+                <li><a href="?page={{ posts.number|sub:forloop.revcounter }}">{{ posts.number|sub:forloop.revcounter }}</a></li>
+                
+                {% endif %}
+
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        <li class="active"><a>{{ posts.number }}</a></li>
+
+        {% if posts.number < posts.paginator.num_pages %}
+            {% for i in 'abcde'|make_list %}
+                {% if posts.number|add:forloop.counter <= posts.paginator.num_pages %}
+                    
+                    {% if query %}
+                    <li><a href="?s={{ query }}&page={{ posts.number|add:forloop.counter }}">{{ posts.number|add:forloop.counter }}</a></li>
+                    
+                    {% else %}
+                    <li><a href="?page={{ posts.number|add:forloop.counter }}">{{ posts.number|add:forloop.counter }}</a></li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            
+            {% if query %}
+            <li><a href="?s={{ query }}&page={{ posts.number|add:1 }}">下一页</a></li>
+            
+            {% else %}
+            <li><a href="?page={{ posts.number|add:1 }}">下一页</a></li>
+            {% endif %}
+
+        {% else %}
+            <li class="disabled"><a>下一页</a></li>
+        {% endif %}
+    </ul>
+</div>

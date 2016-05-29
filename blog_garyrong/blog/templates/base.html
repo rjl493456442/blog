@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="ie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+
+	<!-- Basic Page Needs -->
+	<meta charset="utf-8">
+	<title>{% block title %}{% endblock %}</title>
+	<meta name="description" content="Blog">
+	<meta name="author" content="garyrong">
+	
+	<!-- Mobile Specific Metas -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+	
+	<!-- Main Style -->
+	<link rel="stylesheet" href="/static/assets/css/style.css">
+	
+	<!-- Skins -->
+	<link rel="stylesheet" href="/static/assets/css/skins.css">
+	
+	<!-- Responsive Style -->
+	<link rel="stylesheet" href="/static/assets/css/responsive.css">
+
+	<!-- Extend Style -->
+	{%  block extend_style %}{% endblock %}
+	
+	<!-- Favicons -->
+	<link rel="shortcut icon" href="/static/assets/images/favicon.png">
+
+  
+</head>
+<body>
+
+<div class="loader"><i class="loader_html fa-spin"></i></div>
+
+<div id="wrap" class="stripe grid_1200">
+	<div class="wrap-search">
+		<form method="get">
+			<input type="search" name="s" value="Search here ..." onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;">
+		</form>
+	</div><!-- End wrap-search -->
+	<header id="header">
+		<div class="container clearfix">
+			<div class="logo"><a href="/">Gary Rong</a></div><!-- End logo -->
+			<div class="header-follow">
+				<div class="header-follow-a">关注我</div>
+				<div class="follow-social">
+					<i class="fa fa-caret-up"></i>
+					<ul>
+						{%include "follow.html" %}
+					</ul>
+				</div><!-- End follow-social -->
+			</div><!-- End header-follow -->
+			<div class="header-search">
+				<div class="header-search-a"><i class="fa fa-search"></i></div>
+			</div><!-- End header-search -->
+
+			<!--  extend page.html -->
+			
+			<nav class="navigation">
+			    <ul>
+			        <li class="mega-menu"><a href="/"><h5>主页</h5></a></li>
+			        {% for category in categories %}
+			        {% if category.is_nav %}
+			        <li class="mega-menu">
+			            <a href="{{ category.get_absolute_url }}"><h5>{{ category.name }}</h5></a>    
+			        </li>
+			        {% endif %}
+			        {% endfor %}
+			    </ul>
+			</nav><!-- End navigation -->
+			
+			
+			<!--  End extend page.html -->
+
+			<nav class="navigation_mobile navigation_mobile_main">
+				<div class="navigation_mobile_click">Go to...</div>
+				<ul></ul>
+			</nav><!-- End navigation_mobile -->
+		</div><!-- End container -->
+	</header><!-- End header -->
+	
+	<div class="clearfix"></div>
+	<div class="sections">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8 main-content">
+					<!-- post block -->
+					{% block posts %}{% endblock %}
+				</div><!-- End main-content -->
+				<div class="col-md-4 sidebar">
+					{% include "sidebar.html" %}
+				</div>
+			</div><!-- End row -->
+		</div><!-- End container -->
+	</div><!-- End sections -->
+	
+	<div class="clearfix"></div>
+	
+	{% include "footer.html" %}
+	
+</div><!-- End wrap -->
+
+<div class="go-up"><i class="fa fa-chevron-up"></i></div>
+
+<!-- js -->
+<script src="/static/assets/js/jquery.min.js"></script>
+<script src="/static/assets/js/html5.js"></script>
+<script src="/static/assets/js/jquery.nicescroll.min.js"></script>
+<script src="/static/assets/js/modernizr.js"></script>
+<script src="/static/assets/js/jquery.isotope.min.js"></script>
+<script src="/static/assets/js/tabs.js"></script>
+<script src="/static/assets/js/jquery.prettyPhoto.js"></script>
+<script src="/static/assets/js/jquery.bxslider.min.js"></script>
+<script src="/static/assets/js/jquery.tweet.js"></script>
+<script src="/static/assets/js/jflickrfeed.min.js"></script>
+<script src="/static/assets/js/jquery.jribbble-1.0.1.ugly.js"></script>
+<script src="/static/assets/js/custom.js"></script>
+<!-- End js -->
+
+</body>
+</html>

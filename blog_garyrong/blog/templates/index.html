@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% block title %}Gary Rong博客{{title}}{% endblock %}
+{% block extend_style %}
+<link rel="stylesheet" href="/static/assets/css/code.css">
+<!-- 多说评论框 start -->
+
+{% endblock %}
+
+
+{% block posts %}
+	{% with post_list=posts.object_list %}
+	{% if post_list %}
+    {% for post in post_list %}
+    <div class="post post-image">
+		<div class="post-head"><h3><a href="{{post.get_absolute_url}}">{{post.title}}</a></h3>
+			{%include "post_related.html"%}
+			<div class="clearfix"></div>
+		</div><!-- End post-head -->
+		<div class="post-wrap">
+			{%if post.image != None %}
+			<div class="post-img"><a href="{{post.get_absolute_url}}"><img alt="" src="{{post.image_url | default_if_none:''}}"></a></div>
+			{% endif %}
+			<div class="post-inner">
+				<p>{{post.summary | truncatewords:140}}</p>
+				<div class="clearfix"></div>
+				<div class="post-share-view">
+					<div class="post-meta">
+						<div><i class="fa fa-eye"></i><span>浏览{{post.view_times}}次 </span></div>
+						{%include "share.html" %}
+						<a href="{{post.get_absolute_url}}" class="button post-more">阅读全文</a>
+					</div><!-- End post-meta -->
+				</div><!-- End post-share-view -->
+				<div class="clearfix"></div>
+			</div><!-- End post-inner -->
+		</div><!-- End post-wrap -->
+	</div><!-- End post -->
+    {% endfor %}
+    {% endif %}
+	{% endwith %}
+    {% include "pagination.html" %}
+{% endblock %}
+
