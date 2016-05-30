@@ -2,7 +2,10 @@
 {% block extend_style %}
 {% load duoshuo_tags %}
 <link rel="stylesheet" href="/static/assets/css/colorful.css">
-
+<!-- 将此标记放置在 head 中，或放置在结束 body 标记之前，并使其紧邻此标记。 -->
+<script src="https://apis.google.com/js/platform.js" async defer>
+  {lang: 'zh-CN'}
+</script>
 <!-- 多说公共JS代码 end -->
 {% endblock %}
 

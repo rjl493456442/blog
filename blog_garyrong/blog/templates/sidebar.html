@@ -25,7 +25,9 @@
 	<div class="widget-categories">
 		<ul>
 			{%for category in categories%}
+			{% if not category.is_nav%}
 			<li><a href="{{category.get_absolute_url}}">{{category.name}}<span>({{category.related_post_number}})</span></a><i class="fa fa-angle-double-right"></i></li>
+			{% endif%}
 			{%endfor%}
 		</ul>
 	</div><!-- End widget-categories -->
