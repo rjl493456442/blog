@@ -2,9 +2,10 @@
 from django.contrib import admin
 import xadmin
 from django.core import urlresolvers
-from models import Post, Category, Page, Widget
+from models import Post, Category, Page, Widget, Media
 import datetime
 import markdown2
+
 class PostAdmin(object):
     search_fields = ('title', 'alias')
     fields = ('content', 'summary', 'title', 'alias', 'tags', 'status',
@@ -53,7 +54,11 @@ class WidgetAdmin(object):
     fields = ('title', 'content', 'rank', 'hide')
     list_display = ('title', 'rank', 'hide')
 
+class PostImageInline(object):
+    fields = ('image',)
+
 xadmin.site.register(Post, PostAdmin)
 xadmin.site.register(Category, CategoryAdmin)
 xadmin.site.register(Page, PageAdmin)
 xadmin.site.register(Widget, WidgetAdmin)
+xadmin.site.register(Media, PostImageInline)

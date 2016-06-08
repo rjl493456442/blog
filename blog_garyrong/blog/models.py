@@ -200,3 +200,10 @@ class Widget(models.Model):
         ordering = ['rank', '-create_time']
         verbose_name_plural = verbose_name = u"侧栏组件"
 
+class Media(models.Model):
+    image = models.ImageField(upload_to = 'media/')
+
+    def __unicode__(self):
+        return self.image.name
+    class Meta:
+        verbose_name_plural = verbose_name = u"资源文件"
