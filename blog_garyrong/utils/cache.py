@@ -19,7 +19,6 @@ except ImportError as e:
 
 
 def cache_decorator(expiration=3*60):
-
     def wrapper(func):
         def news(*args, **kwargs):
             unique_str = repr((func, args, kwargs))

@@ -48,7 +48,7 @@ class Category(models.Model):
         return len(self.p_category.all())
 
     def get_absolute_url(self):
-        return "/category/%s/" % (self.alias,)
+        return "/category/%s/" % self.alias
 
 
 class Post(models.Model):
@@ -119,6 +119,7 @@ class Post(models.Model):
         if num is None:
             return tags_list
         return tags_list[:num]
+
     @classmethod
     @cache_decorator(1*60)
     def get_hots_posts(cls, num):

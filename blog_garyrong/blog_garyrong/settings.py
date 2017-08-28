@@ -17,7 +17,10 @@ SECRET_KEY = 'iajet=_uw0dvr4a%v-n-odngyteh5ok3yspl-xw*h=+a+(0sk^'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+if DEBUG:
+    ALLOWED_HOSTS = []
+else:
+    ALLOWED_HOSTS = ["localhost"]
 
 
 # Application definition
@@ -36,8 +39,8 @@ INSTALLED_APPS = (
     'reversion',
     'duoshuo', # comment plugin
 )
-if DEBUG:
-    INSTALLED_APPS = INSTALLED_APPS + ('debug_toolbar',)
+#if DEBUG:
+#    INSTALLED_APPS = INSTALLED_APPS + ('debug_toolbar',)
 
 MIDDLEWARE_CLASSES = (
     'django.middleware.gzip.GZipMiddleware', # enable gzip compression
@@ -49,8 +52,8 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-if DEBUG:
-    MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + ("debug_toolbar.middleware.DebugToolbarMiddleware",)
+#if DEBUG:
+#    MIDDLEWARE_CLASSES = MIDDLEWARE_CLASSES + ("debug_toolbar.middleware.DebugToolbarMiddleware",)
 
 ROOT_URLCONF = 'blog_garyrong.urls'
 
@@ -84,9 +87,10 @@ if DEBUG:
     DB_USER = "root"
     DB_PWD = "root"
 else:
-    DOMAIN = "http://www.garyrong.cn"
-    DB_NAME = "mydb"
-    DB_USER = "garyrong"
+    #DOMAIN = "http://www.garyrong.cn"
+    DOMAIN = "http://localhost:8000"
+    DB_NAME = "garyrong.sqlite3"
+    DB_USER = "rjl493456442"
     DB_PWD = "rjl88387132"
 
 DATABASES = {
@@ -97,13 +101,13 @@ DATABASES = {
         "PASSWORD" : DB_PWD,
         "HOST" : "",
         "PORT" : "",
-
     }
 }
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static'),
 )
+
 # List of finder classes that know how to find static files in
 # various locations.
 STATICFILES_FINDERS = (
@@ -121,7 +125,7 @@ TEMPLATE_LOADERS = (
 if DEBUG:
     LOG_FILE = '/tmp/blog.log'
 else:
-    LOG_FILE = '/home/garyrong/virtualenvs/blog/logs/all.log'
+    LOG_FILE = '/tmp/blog.log'
 
 LOGGING = {
     'version': 1,
