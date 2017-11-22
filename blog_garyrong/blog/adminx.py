@@ -34,7 +34,7 @@ class PostAdmin(object):
             obj.summary = obj.content
         obj.content_html = markdown2.markdown(obj.content, extras = 
             ['code-color', 'footnotes', 'tables', 'wiki-tables', 'fenced-code-blocks', 
-             'cuddled-lists', 'break-on-newline', 'header-ids', 'spoiler', 'smarty-pants'])
+             'cuddled-lists', 'break-on-newline', 'header-ids', 'spoiler', 'smarty-pants', 'numbering', 'use-file-vars', 'tag-friendly'])
         obj.save()
 
 class CategoryAdmin(object):
