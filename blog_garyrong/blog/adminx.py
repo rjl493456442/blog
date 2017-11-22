@@ -32,7 +32,9 @@ class PostAdmin(object):
         obj.author = self.request.user
         if not obj.summary:
             obj.summary = obj.content
-        obj.content_html = markdown2.markdown(obj.content, extras = ['code-color', 'footnotes', 'tables', 'wiki-tables', 'fenced-code-blocks', 'cuddled-lists'])
+        obj.content_html = markdown2.markdown(obj.content, extras = 
+            ['code-color', 'footnotes', 'tables', 'wiki-tables', 'fenced-code-blocks', 
+             'cuddled-lists', 'break-on-newline', 'header-ids', 'spoiler', 'smarty-pants'])
         obj.save()
 
 class CategoryAdmin(object):

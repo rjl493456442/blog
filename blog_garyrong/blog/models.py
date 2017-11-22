@@ -3,7 +3,6 @@ from datetime import datetime
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.functional import cached_property
-from markdown_deux.templatetags.markdown_deux_tags import markdown_allowed
 
 from blog_garyrong import settings
 from utils.cache import cache_decorator
@@ -60,8 +59,8 @@ class Post(models.Model):
     is_top = models.BooleanField(default=False, verbose_name=u'置顶')
 
     summary = models.TextField(verbose_name=u'摘要')
-    # TODO convert to markdown format
-    content = models.TextField(verbose_name = u'正文', help_text = markdown_allowed())
+
+    content = models.TextField(verbose_name = u'正文')
     content_html = models.TextField(verbose_name=u'文章正文html')
 
     view_times = models.IntegerField(default = 1)

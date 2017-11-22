@@ -1,6 +1,5 @@
 {% extends "base.html" %}
 {% block extend_style %}
-{% load duoshuo_tags %}
 <link rel="stylesheet" href="/static/assets/css/colorful.css">
 <!-- 将此标记放置在 head 中，或放置在结束 body 标记之前，并使其紧邻此标记。 -->
 <script src="https://apis.google.com/js/platform.js" async defer>
@@ -24,7 +23,7 @@
 					</div> 
 					<div class="post-wrap">
 						<div class="post-inner">
-							{{post.content_html | safe }}
+                            {{post.content_html | safe }}
 							<div class="clearfix"></div>
 							<div class="post-share-view">
 								<div class="post-meta">
@@ -83,9 +82,6 @@
 					</div> 
 				</div> 
 				<div class="clearfix"></div>
-
-				{% duoshuo_comments %}
-
 			</div> 
 		</div> 
 	</div>

@@ -37,7 +37,6 @@ INSTALLED_APPS = (
     'xadmin',
     'crispy_forms', # xadmin's dependency
     'reversion',
-    'duoshuo', # comment plugin
 )
 #if DEBUG:
 #    INSTALLED_APPS = INSTALLED_APPS + ('debug_toolbar',)
@@ -216,9 +215,6 @@ LIKE_MOST_NUM = 5
 ONE_DAY = 24*60*60
 FIF_MIN = 15 * 60
 FIVE_MIN = 5 * 60
-
-DUOSHUO_SECRET = 'b676a6b61e307243240d4dc7dfc68c2d'
-DUOSHUO_SHORT_NAME = 'garyrong'
 
 # 微信
 WEIXIN_APPID = 0
